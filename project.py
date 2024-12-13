@@ -24,3 +24,10 @@ playlist_f = (
 import random
 from datetime import timedelta
 from typing import Iterable, Any, Union
+
+def parse_playlist(playlist: str) -> list:
+    songs = []
+    for line in playlist.strip().split("\n"):
+        name, duration = line.rsplit(" ", 1)
+        songs.append((name, float(duration)))
+    return songs
