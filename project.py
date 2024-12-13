@@ -42,3 +42,6 @@ def get_duration(playlist: Iterable, n: int) -> Union[timedelta, str, float]:
     chosen_songs = random.sample(playlist, n)
     total_duration = sum(song[1] for song in chosen_songs)
     return timedelta(hours=int(total_duration // 60), minutes=int(total_duration % 60))
+
+print(get_duration(playlist_e, 3))
+print(get_duration(playlist_f, 3))
