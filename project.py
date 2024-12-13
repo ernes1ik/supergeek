@@ -31,3 +31,14 @@ def parse_playlist(playlist: str) -> list:
         name, duration = line.rsplit(" ", 1)
         songs.append((name, float(duration)))
     return songs
+
+def get_duration(playlist: Iterable, n: int) -> Union[timedelta, str, float]:
+    if isinstance(playlist, str):
+        playlist = parse_playlist(playlist)
+    elif isinstance(playlist, tuple) and all(isinstance(i, dict) for i in playlist):
+        playlist = [(song['title'], song['duration']) for song in playlist]
+    if n > len(playlist):
+        return
+    chosen_songs = random.sample(playlist, n)
+    total_duration = sum(song[1] for song in chosen_songs)
+    return timedelta(hours=int(total_duration // 60), minutes=int(total_duration % 60))
