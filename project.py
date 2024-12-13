@@ -21,3 +21,6 @@ playlist_f = (
     {"title": "Everlong", "duration": 4.51},
     {"title": "My Hero", "duration": 4.02},
 )
+import random
+from datetime import timedelta
+from typing import Iterable, Any, Union
