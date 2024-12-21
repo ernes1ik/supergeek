@@ -41,20 +41,20 @@ import random
 from datetime import timedelta
 from typing import Any, Iterable
 
+def parse_playlist_string(playlist: str) -> dict:
     songs = {}
     for line in playlist.strip().split('\n'):
-        parts = line.rsplit(' ', 1)  # Разделяем на название и длительность
+        parts = line.rsplit(' ', 1)
         if len(parts) == 2:
             title, duration = parts
             try:
-                # Проверяем, что длительность имеет формат MM:SS или M.SS
-                if '.' in duration:  # Если используется десятичный формат
+                if '.' in duration:
                     total_minutes = float(duration)
                 else:
                     minutes, seconds = map(int, duration.split(':'))
                     total_minutes = minutes + seconds / 60.0
-                songs[title] = total_minutes  # Сохраняем в минутах
+                songs[title] = total_minutes
             except ValueError:
                 print(f"Ошибка в формате длительности для '{title}': '{duration}'")
-                continue  # Пропускаем эту строку, если формат неверный
+                continue
     return songs
