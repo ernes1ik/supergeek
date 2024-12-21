@@ -64,3 +64,11 @@ def parse_playlist_tuple(playlist: tuple) -> dict:
     for song_dict in playlist:
         songs.update(song_dict)
     return songs
+
+def get_duration(playlist: Iterable, n: int) -> Any:
+    if isinstance(playlist, str):
+        songs_dict = parse_playlist_string(playlist)
+    elif isinstance(playlist, tuple):
+        songs_dict = parse_playlist_tuple(playlist)
+    else:
+        raise ValueError("Unsupported playlist format")
