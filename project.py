@@ -72,3 +72,21 @@ def get_duration(playlist: Iterable, n: int) -> Any:
         songs_dict = parse_playlist_tuple(playlist)
     else:
         raise ValueError("Unsupported playlist format")
+def get_duration(playlist: Iterable, n: int) -> Any:
+    if isinstance(playlist, str):
+        songs_dict = parse_playlist_string(playlist)
+    elif isinstance(playlist, tuple):
+        songs_dict = parse_playlist_tuple(playlist)
+    else:
+        raise ValueError("Unsupported playlist format")
+
+    song_titles = list(songs_dict.keys())
+    selected_songs = random.sample(song_titles, min(n, len(song_titles)))
+
+    total_duration = sum(songs_dict[title] for title in selected_songs)
+
+    total_seconds = total_duration * 60
+    return timedelta(seconds=total_seconds)
+
+print(get_duration(playlist_e, 3))
+print(get_duration(playlist_f, 3))
