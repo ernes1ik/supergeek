@@ -58,3 +58,9 @@ def parse_playlist_string(playlist: str) -> dict:
                 print(f"Ошибка в формате длительности для '{title}': '{duration}'")
                 continue
     return songs
+    
+def parse_playlist_tuple(playlist: tuple) -> dict:
+    songs = {}
+    for song_dict in playlist:
+        songs.update(song_dict)
+    return songs
